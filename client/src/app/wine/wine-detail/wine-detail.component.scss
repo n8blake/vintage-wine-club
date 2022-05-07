@@ -1,0 +1,13 @@
+.wine-detail-image {
+    width: 100%;
+    max-width: 300pt;
+    border-radius: 50%;
+    border: solid 1pt #3331;
+	margin: 6pt; 
+	shape-outside: circle(50%);
+}
+
+.som-thumbnail {
+    max-width: 50pt;
+    clip-path: circle();
+}

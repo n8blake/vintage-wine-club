@@ -1,0 +1,27 @@
+<div class="container">
+    <ul class="list-group-flush m-4">
+        <li class="list-group-item " *ngFor="let wine of wineList">
+            <a title="add to cart" class="text-decoration-none text-dark" [routerLink]="['/wine', wine.id]">
+                <div class="d-flex justify-content-between">
+                    <div class="col-md-10 d-grid gap-2 d-sm-flex justify-content-sm-start ">
+                        <div class="d-flex flex-column flew-row-sm justify-content-center">
+                            <img alt="" class="wine-list-thumbnail-image" [src]="wine.imageUrl" />
+                        </div>
+                        <div>
+                            <small>{{wine.year}}</small>
+                            <h6>{{wine.name}}</h6>
+                            <p *ngIf="wine.description">{{wine.description}}</p>
+                            <div *ngIf="wine.tastingNotes && wine.tastingNotes.length > 0">
+                                <small class="d-sm-inline d-block fw-lighter">Notes: </small>
+                                <span class="tasting-note badge rounded-pill bg-secondary m-1" *ngFor="let note of wine.tastingNotes">{{note}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column m-2 justify-content-between">
+                        <i class="bi bi-info-circle"></i>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>

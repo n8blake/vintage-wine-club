@@ -14,6 +14,10 @@ app.use(express.json());
 app.use(cors());
 app.use(compression());
 // Serve up static assets (usually on heroku)
+app.use(express.static(__dirname + '/static'));
+  app.get('/static/preview/', function(request, response) {
+    response.sendFile(path.join( __dirname + '/static/og-thumb.png'));
+  });
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(__dirname + '/client/dist/client'));
   app.get('/*', function(request, response) {
