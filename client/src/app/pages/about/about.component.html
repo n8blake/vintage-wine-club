@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="my-5">
+        <h2 class="text-center text-primary">Our Sommeliers</h2>
+        <div class="d-flex justify-content-center my-3">
+            <img alt="fleur" width="20pt" src="/assets/other/page-ornament-1.svg"/>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-md-6" *ngFor="let som of soms; let index = index">
+            <section class="">
+                <img alt="" class="som-img " [ngClass]="(0 === index % 2) ? 'som-img-left' : 'som-img-right'" [alt]="som.name" [src]="som.image" >
+                <br>
+                <h4 class="som-name">{{som.name}}</h4>
+                <p class="som-bio " [ngClass]="(0 === index % 2) ? 'som-bio-right' : 'som-bio-left'">{{som.bio}}</p>
+                <br>
+            </section>
+            <section class="mb-5">
+                <div class="text-center">
+                    <h6>Favorite Wine</h6>
+                    <a class="wine-link " [ngClass]="{'wine-link-white' : som.wine.color === 'white', 'wine-link-rose' : som.wine.color === 'rose'}" [routerLink]="['/wine', som.wine.id]">{{som.wine.label}}</a>
+                </div>
+            </section>
+        </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="container my-5">
+    <div class="d-flex flex-column align-items-center justify-content-center ">
+        <div class="text-dark display-6">{{wine.year}}</div>
+        <h1>{{wine.name}}</h1>
+    </div>
+    <div class="row flex-lg-row align-items-center g-5 py-5">
+        <div class="col-md-6">
+            <img alt="" [alt]="wine.name" class="wine-detail-image" [src]="wine.imageUrl" />
+        </div>
+        <div class="col-md-6">
+            <p>{{wine.description}}</p>
+            <div *ngIf="wine.tastingNotes && wine.tastingNotes.length > 0">
+                <small class="d-sm-inline d-block fw-lighter">Notes: </small>
+                <span class="tasting-note badge rounded-pill bg-secondary m-1" *ngFor="let note of wine.tastingNotes">{{note}}</span>
+            </div>
+            <div class="my-4 text-center " [ngClass]="{'text-burgundy' : wine.color === 'red', 'text-rose' : wine.color === 'rose', 'text-chardonnay' : wine.color === 'white'}">
+                <div class="fw-lighter d-flex justify-content-center">
+                    <em *ngFor="let comp of wine.composition" class="m-1">{{comp.percentage | percent}} {{comp.grape}} </em>
+                </div>
+            </div>
+            <hr>
+            <div>
+                <em class="text-center d-block text-dark">Picked by:</em>
+                <div class="d-flex flex-row justify-content-center">
+                <div *ngFor="let name of wine.pickedBy" class="d-flex flex-column align-items-center mx-4">
+                    <img alt="" class="som-thumbnail" [src]="getSomImageUrl(name)" />
+                    <strong class="text-primary h6">{{name}}</strong>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

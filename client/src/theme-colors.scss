@@ -20,28 +20,29 @@ $teal:    #20c997;
 $cyan:    #0dcaf0;*/
 
 $slammin-salmon: #F7525F;
-$dark-red : #4C0F16;
-$light-pink : #F9D9DD;
+$dark-red : #720618;
+$light-pink : #DDB8AC;
+$red: #EF0A3C;
 
-$orange : #EF8E25;
+$orange : #E04117;
 $dark-orange : #512800;
 $light-orange : #fdf3e8;
 
-$yellow : #F4C653;
+$yellow : #EFA716;
 $dark-yellow : #775105;
-$light-yellow : #F7ECD5;
+$light-yellow : #E5D9BE;
 
-$green : #80C941;
-$dark-green : #485936;
-$light-green : #DEEFCE;
+$green : #1CD37F;
+$dark-green : #448E6E;
+$light-green : #8FE5BD;
 
 $cyan : #53CEF4;
 $light-cyan : #BBE8F2;
 $dark-teal : #004454;
 
-$blue  : #5385F4;
-$dark-blue : #2B3547;
-$light-blue : #D5DEEF;
+$blue  : #368EBF;
+$dark-blue : #0D5075;
+$light-blue : #8FC0E2;
 
 $purple : #A54187;
 $dark-purple : #490631;
@@ -51,6 +52,13 @@ $brown : #998675;
 $dark-brown : #736357;
 $light-brown : #C7B299;
 $latte : #EFE3D5;
+
+$sparkeling: #F7F3EB;
+$deep-merlot: #350913;
+$chenin-blanc: #E5D9BE;
+$chardonnay: #DBBA77;
+$rose: #DDB8AC;
+$blush: #D6826B;
 
 $white:    #fff;
 $gray-100: #f8f9fa;
@@ -64,14 +72,14 @@ $gray-800: #343a40;
 $gray-900: #212529;
 $black:    #000;
 
-$primary:       $dark-blue;
-$secondary:     $brown;
+$primary:       $dark-red;
+$secondary:     $light-pink;
 $success:       $green;
-$info:          $cyan;
+$info:          $blue;
 $warning:       $yellow;
-$danger:        $slammin-salmon;
-$light:         $light-brown;
-$dark:          $dark-brown;
+$danger:        $red;
+$light:         $sparkeling;
+$dark:          $deep-merlot;
 
 $theme-colors: (
   "primary":    $primary,
@@ -81,5 +89,10 @@ $theme-colors: (
   "warning":    $warning,
   "danger":     $danger,
   "light":      $light,
-  "dark":       $dark
+  "dark":       $dark,
+  "chardonnay": $chardonnay,
+  "rose":       $rose,
+  "blush":      $blush,
+  "chenin-blanc": $chenin-blanc,
+  "burgundy":   $dark-red
 );

@@ -1,0 +1,53 @@
+.som-img {
+    shape-outside: ellipse(60pt 100pt at 50% 50%);
+    clip-path: ellipse(60pt 100pt at 50% 50%);
+    height: 200pt;
+}
+
+.som-img-left {
+    float: left;
+    transform: translateX(-12pt);
+    
+}
+
+.som-img-right {
+    float: right;
+    transform: translate(12pt);
+}
+
+.som-name {
+    color: #720618;
+    text-align: center;
+}
+
+.som-bio {
+    font-weight: lighter;
+    margin: 10pt;
+}
+
+.som-bio-left {
+    text-align: end;
+}
+
+.som-bio-right {
+    text-align: start;
+}
+
+.wine-link {
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.wine-link-white {
+    color: #E5D9BE
+}
+.wine-link-white:hover {
+    color: #DBBA77
+}
+
+.wine-link-rose {
+    color: #DDB8AC
+}
+.wine-link-rose:hover {
+    color: #D6826B
+}
