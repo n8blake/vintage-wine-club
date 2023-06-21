@@ -2,7 +2,17 @@
     <hr>
     <div class="d-flex justify-content-between">
         <div>
-            &copy; 2022 Vintage Wine Club, LLC.
+            &copy; 2023 Vintage Wine Club, LLC.
+            <div *ngIf="!user">
+                <small>
+                    <a class="btn btn-sm text-secondary text-decoration-none" [routerLink]="['/users', 'login']">Login</a>
+                </small>
+            </div>
+            <div *ngIf="user">
+                <small>
+                    <a class="btn btn-sm text-secondary text-decoration-none" [routerLink]="['/users', 'profile', user._id]">Profile</a>
+                </small>
+            </div>
         </div>
         <div>
             <small class="fw-lighter">
