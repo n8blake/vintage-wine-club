@@ -1,7 +1,7 @@
 {
   "name": "vintage-wine-club",
   "version": "1.0.0",
-  "description": "Wine Club App",
+  "description": "Wine Club Website",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -13,14 +13,19 @@
     "build": "if-env NODE_ENV=production && npm run build:prod || npm run build:dev",
     "build:prod": "cd client && npm run build:prod",
     "build:dev": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "seed": "node scripts/seedDB.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/n8blake/vintage-wine-club.git"
   },
   "keywords": [
-    "wine"
+    "wine",
+    "list",
+    "wine club",
+    "beverage",
+    "alcohol"
   ],
   "author": "n8blake",
   "license": "ISC",
@@ -34,15 +39,27 @@
     "nodemon": "^2.0.16"
   },
   "dependencies": {
-    "compression": "^1.7.4",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
-    "express": "^4.18.1",
-    "if-env": "^1.0.4",
-    "path": "^0.12.7",
     "@angular-devkit/build-angular": "^13.3.4",
     "@angular/cli": "^13.3.4",
     "@angular/compiler-cli": "^13.3.5",
-    "typescript": "~4.5.2"
+    "compression": "^1.7.4",
+    "connect-mongodb-session": "^3.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "if-env": "^1.0.4",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.4.5",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.3",
+    "passport": "^0.6.0",
+    "passport-custom": "^1.1.1",
+    "passport-http-bearer": "^1.0.1",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "typescript": "~4.5.2",
+    "uuid": "^9.0.0"
   }
 }
