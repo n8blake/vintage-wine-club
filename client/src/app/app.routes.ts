@@ -12,11 +12,20 @@ const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: 'members', component: JoinComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'wine', component: WineListComponent},
-  { path: 'wine/:id', component: WineDetailComponent, canActivate: [WineRouteActivatorService]},
+  { path: 'wine', component: WineListComponent },
+  {
+    path: 'wine/:id',
+    component: WineDetailComponent,
+    canActivate: [WineRouteActivatorService],
+  },
   { path: '404', component: PageNotFoundComponent, pathMatch: 'full' },
-  { path: '', redirectTo: '/welcome', pathMatch: 'full'},
-  { path: '**', component: PageNotFoundComponent }
+  {
+    path: 'users',
+    loadChildren: () =>
+      import('./user/user.module').then((mod) => mod.UserModule),
+  },
+  { path: '', redirectTo: '/welcome', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
