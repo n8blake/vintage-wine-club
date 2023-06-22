@@ -5,7 +5,7 @@ const WineCompositionSchema = new Schema({
     grape: {type: String, required: true },
     percentage: {
         type: Number, 
-        required: true,
+        required: false,
         min: 0,
         max: 1 
     }
