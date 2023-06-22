@@ -31,8 +31,18 @@ const UserSchema = new Schema({
     type: String,
     default: "user",
   },
+  shortBio: {
+    type: String,
+  },
+  longBio: {
+    type: String
+  },
+  image: {
+    type: Schema.Types.ObjectId, ref: 'Image'
+  }
 });
 
+UserSchema.plugin(require("mongoose-autopopulate"))
 const User = mongoose.model("User", UserSchema);
 
 module.exports = User;
