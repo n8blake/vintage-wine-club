@@ -1,3 +1,35 @@
-<div class="container">
+<div class="container" *ngIf="!canEdit">
     <h1>{{user?.firstName}} {{user?.lastName}}</h1>
+</div>
+<div class="container" *ngIf="canEdit && user">
+    <form #profileForm="ngForm" (ngSubmit)="update(profileForm)" autocomplete="off">
+        <div class="row">
+            <div class="col col-md-6">
+                <div class="form-group">
+                    <label for="firstName" class="mb-1">First Name: </label>
+                    <input class="form-control" [(ngModel)]="user.firstName" type="text" name="firstName" id="firstName" placeholder="First Name" required="true" />
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="mb-1">Last Name: </label>
+                    <input class="form-control" [(ngModel)]="user.lastName" type="text" name="lastName" id="lastName" placeholder="Last Name" required="true" />
+                </div>
+                <div class="form-group">
+                    <label for="email" class="mb-1">Email: </label>
+                    <input class="form-control" [(ngModel)]="user.email" type="email" name="email" id="email" placeholder="Email Address" required="true" />
+                </div>
+                <div class="form-group">
+                    <label for="shortBio" class="mb-1">Short Bio: </label>
+                    <textarea class="form-control" [(ngModel)]="user.shortBio" type="shortBio" name="shortBio" id="shortBio" placeholder="A short paragraph about yourself." ></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="longBio" class="mb-1">Long Bio: </label>
+                    <textarea class="form-control" [(ngModel)]="user.longBio" type="shortBio" name="longBio" id="longBio" 
+                    rows="10" placeholder="A longer entry about yourself and your story with wine." ></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="d-grid m-2">
+            <button type="submit" class="btn btn-primary">Save Profile</button>
+        </div>
+    </form>
 </div>
