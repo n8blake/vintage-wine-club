@@ -39,6 +39,23 @@ export class UsersManagerService {
       .pipe(catchError(this.handleError<IUser>('getUser')));
   }
 
+  saveUser(user: IUser): Observable<IUser> {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      }),
+    };
+    if(user._id){
+      console.log(`Putting user: ${user._id}`);
+      return this.http.put<IUser>(this.baseURL + `/api/users/${user._id}`, options).pipe(catchError(this.handleError<IUser>('saveUser')));
+    } else {
+      return this.http
+        .post<IUser>(this.baseURL + `/api/users/new`, options)
+        .pipe(catchError(this.handleError<IUser>('saveUser')));
+    }
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       if (error.status !== 401) {
