@@ -71,6 +71,7 @@ module.exports = {
     );
   },
   update: function (req, res) {
+    console.log("Updating user...");
     User.findOneAndUpdate({ _id: req.params.id }, req.body)
       .then((dbModel) => {
         res.json(dbModel);
