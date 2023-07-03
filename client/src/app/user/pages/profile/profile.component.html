@@ -1,10 +1,42 @@
-<div class="container" *ngIf="!canEdit">
+<div class="container" *ngIf="!canEdit || isPreviewing">
+    <div class="d-flex justify-content-end" *ngIf="canEdit && isPreviewing">
+        <button class="btn btn-outline-primary" (click)="togglePreview()">Exit Preview</button>
+    </div>
     <h1>{{user?.firstName}} {{user?.lastName}}</h1>
+    <div>
+        <article>
+            <div class="row">
+                <div class="col col-md-6">
+                    <p>{{user?.shortBio}}</p>
+                </div>
+                <div class="col col-md-6">
+                    <img class="som-img" [src]="user?.image" />
+                </div>
+            </div>
+            <hr>
+            <p style="white-space: pre-line;">{{user?.longBio}}</p>
+        </article>
+    </div>
 </div>
-<div class="container" *ngIf="canEdit && user">
+<div class="container" *ngIf="canEdit && user && !isPreviewing">
+    <div class="row">
+        <div class="d-flex justify-content-between">
+            <div>              
+            </div>
+            <div class="mx-2">
+                Roles: 
+                <span *ngFor="let role of user.roles">
+                    <span class="badge rounded-pill bg-primary mx-2" *ngIf="role">{{roleUuidToName(role)}}</span>
+                </span>
+            </div>
+            <div>
+                <button class="btn btn-outline-primary" (click)="togglePreview()">Preview</button>
+            </div>
+        </div>
+    </div>
     <form #profileForm="ngForm" (ngSubmit)="update(profileForm)" autocomplete="off">
         <div class="row">
-            <div class="col col-md-6">
+            <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="firstName" class="mb-1">First Name: </label>
                     <input class="form-control" [(ngModel)]="user.firstName" type="text" name="firstName" id="firstName" placeholder="First Name" required="true" />
@@ -27,9 +59,25 @@
                     rows="10" placeholder="A longer entry about yourself and your story with wine." ></textarea>
                 </div>
             </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="m-2 d-flex justify-content-center" *ngIf="user.image">
+                    <img [src]="user.image" width="300" />
+                </div>
+                <div class="form-group m-2">
+                    <label for="profilePhoto" class="mb-1">Profile Photo:</label>
+                    <input class="form-control" type="file" id="profilePhoto" (change)="onFileChange($event)"  />
+                </div>
+            </div>
         </div>
-        <div class="d-grid m-2">
-            <button type="submit" class="btn btn-primary">Save Profile</button>
+        <div class="row">
+            <div class="d-grid my-2">
+                <button type="submit" class="btn btn-primary">Save Profile</button>
+            </div>
         </div>
     </form>
+    <div class="row">
+        <div class="d-grid my-2">
+            <button class="btn btn-outline-primary" (click)="logout()">Logout</button>
+        </div>
+    </div>
 </div>
