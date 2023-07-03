@@ -1,0 +1,36 @@
+<div class="container">
+    <form [formGroup]="newUserForm" (ngSubmit)="submitNewUser(newUserForm.value)">
+        <div class="d-flex justify-content-center">
+            <div class="col col-md-6">
+                <div class="form-group m-2">
+                    <label for="firstName" class="mb-1">First Name:</label>
+                    <input class="form-control" formControlName="firstName" name="first" type="text" id="firstName" placeholder="First Name" required="true" [ngClass]="{
+                        'is-invalid': (newUserForm.controls['firstName'] && newUserForm.controls['firstName'].invalid) && (newUserForm.controls['firstName'].touched)}" />
+                </div>
+                <div class="form-group m-2">
+                    <label for="lastName" class="mb-1">Last Name: </label>
+                    <input class="form-control" formControlName="lastName" name="last" type="text" id="lastName" placeholder="Last Name" required="true" [ngClass]="{
+                        'is-invalid': (newUserForm.controls['lastName'] && newUserForm.controls['lastName'].invalid) && (newUserForm.controls['lastName'].touched)}" />
+                </div>
+                <div class="form-group m-2">
+                    <label for="email" class="mb-1">Email Address: </label>
+                    <input class="form-control" formControlName="email" name="email" type="email" id="email" placeholder="email@address.com" required="true" [ngClass]="{
+                        'is-invalid': (newUserForm.controls['email'] && newUserForm.controls['email'].invalid) && (newUserForm.controls['email'].touched)}" />
+                </div>
+                <div class="form-group m-2">
+                    <label for="password" class="mb-1">Password: {{password.value}}</label>
+                    <input class="form-control" formControlName="password" name="password" type="password" id="password" placeholder="Password" (ngModelChange)="passwordsConfirmationMatches()" required="true" [ngClass]="{
+                        'is-invalid': (newUserForm.controls['password'] && newUserForm.controls['password'].invalid) && (newUserForm.controls['password'].touched)}" />
+                </div>
+                <div class="form-group m-2">
+                    <label for="password" class="mb-1">Confirm Password: {{passwordConfirmation.value}}</label>
+                    <input class="form-control" formControlName="passwordConfirmation" name="passwordConfirmation" type="password" id="passwordConfirmation" placeholder="Password" required="true" (ngModelChange)="passwordsConfirmationMatches()" [ngClass]="{
+                        'is-invalid': (newUserForm.controls['passwordConfirmation'] && newUserForm.controls['passwordConfirmation'].invalid) && (newUserForm.controls['passwordConfirmation'].touched)}" />
+                </div>
+                <div class="d-grid m-2">
+                    <button type="submit" class="btn btn-primary" [disabled]="!newUserForm.valid">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
