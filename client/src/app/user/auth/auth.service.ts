@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { catchError, tap, Observable, of } from 'rxjs';
+import { catchError, tap, Observable, of, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IUser } from '../user/user';
 @Injectable({
@@ -10,6 +10,7 @@ export class AuthService implements OnInit {
   currentUser?: IUser;
   activeUserToken?: string;
   baseURL: string = '';
+  private userChange: Subject<IUser> = new Subject<IUser>();
 
   constructor(private http: HttpClient) {
     if (!environment.production) {
@@ -46,6 +47,7 @@ export class AuthService implements OnInit {
             localStorage.setItem('token', data.token);
           }
           this.currentUser = <IUser>data;
+          this.userChange.next(this.currentUser);
         })
       )
       .pipe(
@@ -66,6 +68,10 @@ export class AuthService implements OnInit {
 
   isAuthenticated(): boolean {
     return !!this.currentUser?._id;
+  }
+
+  getCurrentUser(): IUser | undefined {
+    return this.currentUser;
   }
 
   getCurrentIdentity(): Observable<IUser> {
