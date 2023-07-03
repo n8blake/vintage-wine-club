@@ -5,10 +5,14 @@ const emailController = require("./emailController");
 const makeToken = require("../utils/TokenGenerator");
 const jwt = require("jsonwebtoken");
 const generateEmail = require("../utils/EmailGenerator");
+const fs = require('fs-extra');
 // Define User REST Controls
 module.exports = {
   findAll: function (req, res) {
     User.find(req.query, "-hashedPassword -salt -__v")
+      .populate(
+        'roles', '-__v'
+      )
       .then((dbModel) => {
         res.json(dbModel);
       })
@@ -51,11 +55,14 @@ module.exports = {
           .then((newUserData) => {
             //console.log(data);
             const returnedData = {
+              _id: newUserData._id,
               firstName: newUserData.firstName,
               lastName: newUserData.lastName,
               email: newUserData.email,
-              userCreated: newUserData.userCreated
+              userCreated: newUserData.userCreated,
+              token: makeToken({ _id: newUserData._id}, 24)
             };
+            req.session.userId = newUserData._id;
             res.json(returnedData);
           })
           .catch((error) => {
