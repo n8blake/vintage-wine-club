@@ -13,7 +13,9 @@ router.get("/currentIdentity", function (req, res) {
 });
 
 router.post("/new", function(req, res){
+  console.log(req.body);
   if(req.body.password && req.body.email && req.body.firstName && req.body.lastName){
+    console.log("creating new user");
     usersController.create(req, res);
   } else {
     res.status(400).json("Malformatted user request");
