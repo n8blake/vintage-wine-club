@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { catchError, tap, Observable, of } from 'rxjs';
-import { IUser } from './user';
+import { IRole, IUser } from './user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Image } from 'src/app/interfaces/image.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +28,10 @@ export class UsersManagerService {
     return this.http.get<IUser[]>(this.baseURL + '/api/getUsers/', options).pipe(catchError(this.handleError<IUser[]>('getUsers', [])));
   }
 
+  getRoles(): Observable<IRole[]> {
+    return this.http.get<IRole[]>(this.baseURL + '/api/roles/').pipe(catchError(this.handleError<IRole[]>('getRoles', [])));
+  }
+
   getUser(userId: string): Observable<IUser> {
     const options = {
       headers: new HttpHeaders({
@@ -48,10 +53,14 @@ export class UsersManagerService {
     };
     if(user._id){
       console.log(`Putting user: ${user._id}`);
-      return this.http.put<IUser>(this.baseURL + `/api/users/${user._id}`, options).pipe(catchError(this.handleError<IUser>('saveUser')));
-    } else {
       return this.http
-        .post<IUser>(this.baseURL + `/api/users/new`, options)
+        .put<IUser>(this.baseURL + `/api/users/${user._id}`, user)
+        .pipe(catchError(this.handleError<IUser>('saveUser')));
+    } else {
+      console.log(options);
+      console.log(`Posting ${user.firstName}`)
+      return this.http
+        .post<IUser>(this.baseURL + `/api/users/new`, user)
         .pipe(catchError(this.handleError<IUser>('saveUser')));
     }
   }
