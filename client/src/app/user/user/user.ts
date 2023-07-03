@@ -6,11 +6,16 @@ export interface IUser {
   firstName: string;
   lastName: string;
   email: string;
-  role?: string;
+  roles?: Array<IRole>;
   token?: string;
   userCreated?: Date;
-  image?: Image;
+  image?: string;
   shortBio?: string;
   longBio?: string;
-  favoriteWine?: IWine;
+  password?: string;
+}
+
+export interface IRole {
+  _id: string;
+  role?: string;
 }
