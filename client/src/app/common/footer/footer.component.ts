@@ -10,12 +10,12 @@ import { IUser } from 'src/app/user/user/user';
 export class FooterComponent implements OnInit {
 
   user?: IUser;
+  authServiceUser?: IUser;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.authService.getCurrentIdentity().subscribe((data) => {
-      //console.log(data);
       this.user = <IUser>data;
     })
   }
