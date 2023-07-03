@@ -6,12 +6,15 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersManagerComponent } from './pages/users-manager/users-manager.component';
+import { NewUserComponent } from './pages/new-user/new-user.component';
 
 @NgModule({
   declarations: [
     ProfileComponent, 
     LoginComponent, 
-    UsersManagerComponent],
+    UsersManagerComponent, 
+    NewUserComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
