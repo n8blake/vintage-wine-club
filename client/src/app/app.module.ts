@@ -27,7 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     JoinComponent,
     AboutComponent,
     WineListComponent,
-    WineDetailComponent
+    WineDetailComponent,
   ],
   imports: [
     BrowserModule,
