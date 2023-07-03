@@ -1,3 +1,4 @@
+const { Type } = require("@angular-devkit/build-angular");
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
@@ -27,9 +28,12 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  role: {
-    type: String,
-    default: "user",
+  roles: {
+      type: Array,
+      of: {
+        type: Schema.Types.ObjectId,
+        ref: 'Role'
+      }
   },
   shortBio: {
     type: String,
@@ -38,7 +42,7 @@ const UserSchema = new Schema({
     type: String
   },
   image: {
-    type: Schema.Types.ObjectId, ref: 'Image'
+    type: String
   }
 });
 
