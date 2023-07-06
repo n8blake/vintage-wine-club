@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const WineComposition = require('./WineComposition');
+//const WineComposition = require('./WineComposition');
 const Schema = mongoose.Schema;
 
 const WineSchema = new Schema({
@@ -9,8 +9,19 @@ const WineSchema = new Schema({
     abv: { type: Number },
     vintage: {type: Number },
     color: {type: String},
+    sparkling: {type: Boolean},
     origin: { type: Schema.Types.ObjectId, ref: 'Location' },
-    composition: {type: Array, of: WineComposition.WineCompositionSchema}
+    composition: [
+        {
+            grape: {type: String, required: true },
+            percentage: {
+                type: Number, 
+                required: false,
+                min: 0,
+                max: 1 
+            } 
+        }
+    ]
 });
 
 const Wine = mongoose.model("Wine", WineSchema);
