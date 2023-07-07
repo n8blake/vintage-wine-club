@@ -8,6 +8,8 @@ router.get("/", function(req, res){
 
 router.route("/categories")
     .get(wineNotesCategoryController.find)
+
+router.route("/categories/:id")
     .post(wineNotesCategoryController.create)
     .put(wineNotesCategoryController.update)
     .delete(wineNotesCategoryController.remove)
