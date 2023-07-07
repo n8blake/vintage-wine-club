@@ -12,7 +12,7 @@ module.exports = {
     create: function(req, res, next) {
         WineNoteCategory.create(req.body)
             .then(newItem => {
-                req.json(newItem);
+                res.json(newItem);
             })
             .catch((error) => {
                 if (error.code == 11000) {
@@ -24,6 +24,8 @@ module.exports = {
               });
     },
     update: function (req, res) {
+        console.log("updating");
+        console.log(req.body)
         WineNoteCategory.findOneAndUpdate({ _id: req.params.id }, req.body)
           .then((dbModel) => {
             res.json(dbModel);

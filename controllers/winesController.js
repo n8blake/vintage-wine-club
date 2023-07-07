@@ -18,7 +18,7 @@ module.exports = {
     create: function(req, res, next) {
         Wine.create(req.body)
             .then(newItem => {
-                req.json(newItem);
+                res.json(newItem);
             })
             .catch((error) => {
                 if (error.code == 11000) {

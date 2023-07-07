@@ -12,7 +12,7 @@ module.exports = {
     create: function(req, res, next) {
         Role.create(req.body)
             .then(newRole => {
-                req.json(newRole);
+                res.json(newRole);
             })
             .catch((error) => {
                 if (error.code == 11000) {
