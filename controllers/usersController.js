@@ -20,6 +20,9 @@ module.exports = {
   },
   findById: function (request, response) {
     User.findOne({ _id: request.params.id }, "-hashedPassword -salt -__v")
+      .populate(
+        'roles', '-__v'
+      )
       .then((user) => {
         if (user) {
           response.json(user);
