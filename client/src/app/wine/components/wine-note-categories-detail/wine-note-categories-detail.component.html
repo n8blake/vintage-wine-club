@@ -1,0 +1,59 @@
+<div class="container">
+    <div *ngIf="!isEditing">
+        <div class="d-flex justify-content-between">
+            <h1>{{noteCategory?.category}}</h1>
+            <div *ngIf="isSommelier()">
+                <button class="btn btn-outline-primary" (click)="isEditing = true">Edit</button>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col col-lg-8 col-sm-12">
+                <p class="m-4">{{noteCategory?.description}}</p>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isEditing && noteCategory">
+        <form #categoryForm="ngForm" (ngSubmit)="update(categoryForm)" autocomplete="off">
+            <div class="form-group">
+                <label for="category" class="mb-1"></label>
+                <input class="form-control h1" [(ngModel)]="noteCategoryEditable.category" type="text" name="category" id="category" placeholder="Category" required="true" />
+            </div>
+            <div class="form-group">
+                <label for="color" class="mb-1">Color: </label>
+                <input class="form-control form-control-color" [(ngModel)]="noteCategoryEditable.color" type="color" name="color" id="color" placeholder="color" >
+            </div>
+            <div>
+                <label for="description"></label>
+                <textarea rows="10" class="form-control" [(ngModel)]="noteCategoryEditable.description" name="description" id="description" placeholder="Description"></textarea>
+            </div>
+            <div class="d-grid m-2">
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                <button type="button" class="btn btn-outline-secondary mb-2" (click)="cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col col-sm-12 col-md-6 col-lg-4">
+            <span class="badge rounded-pill bg-secondary m-2" *ngFor="let note of notes">
+                {{note.label}}
+            </span>
+        </div>
+        <div *ngIf="isSommelier() && !isAddingNote" class="col col-sm-12 col-md-6 col-lg-4">
+            <button class="btn btn-secondary btn-circle m-1" (click)="isAddingNote = true"><i class="bi bi-plus-lg"></i></button>
+        </div>
+        <div class="col col-sm-12 col-md-6 col-lg-4" *ngIf="isAddingNote">
+            <form #newNoteForm="ngForm" (ngSubmit)="addNote(newNoteForm)">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="note" aria-label="new-note" name="label" [(ngModel)]="newNote.label"/> 
+                <input type="color" name="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color" [(ngModel)]="newNote.color">
+                <button type="submit" class="btn btn-outline-primary">add</button>
+            </div>
+        </form>
+        </div>
+        <div class="col col-sm-12 col-lg-4">
+
+        </div>
+    </div>
+</div>

@@ -1,11 +1,21 @@
 import { Injectable } from '@angular/core';
+import { Observable, catchError, of } from 'rxjs';
+import { IWineNoteCategory } from '../interfaces/wine-note-category';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { IWineNote } from '../interfaces/wine-note';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WineService {
+  baseURL: string = '';
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+    if (!environment.production) {
+      this.baseURL = environment.apiURL;
+    }
+  }
 
   getWines(): any {
     return WINES;
@@ -15,6 +25,66 @@ export class WineService {
     let wine = WINES.find(wine => wine.id === id)
     return wine
   }
+
+  getNoteCategories(): Observable<IWineNoteCategory[]> {
+    return this.http.get<IWineNoteCategory[]>(this.baseURL + '/api/wine_notes/categories')
+    .pipe(catchError(this.handleError<IWineNoteCategory[]>('getNoteCategories')))
+  }
+
+  getNoteCategory(category: string): Observable<IWineNoteCategory> {
+    return this.http.get<IWineNoteCategory>(this.baseURL + '/api/wine_notes/categories/?category=' + category)
+    .pipe(catchError(this.handleError<IWineNoteCategory>('getNoteCategory')))
+  }
+  getNoteCategoryById(categoryId: string): Observable<IWineNoteCategory> {
+    return this.http.get<IWineNoteCategory>(this.baseURL + '/api/wine_notes/categories/?_id=' + categoryId)
+    .pipe(catchError(this.handleError<IWineNoteCategory>('getNoteCategory')))
+  }
+
+  saveNoteCategory(category: IWineNoteCategory): Observable<IWineNoteCategory> {
+    if(category._id){
+      // put
+      console.log('putting category...')
+      console.log(category);
+      const url = this.baseURL + `/api/wine_notes/categories/${category._id}`
+      console.log(url);
+      return this.http
+        .put<IWineNoteCategory>(url, category)
+        //.pipe(this.handleError<IWineNoteCategory>('saveNoteCategory'))
+    } else {
+      // post
+      const url = this.baseURL + '/api/wine_notes/categories/new'
+      return this.http.post(url, category).pipe(this.handleError<IWineNoteCategory>('saveNoteCategory'))
+    }
+  }
+
+  getNotes(category?: IWineNoteCategory): Observable<IWineNote[]> {
+    let url = this.baseURL + `/api/wine_notes/`
+    if(category && category._id){
+      url = `${url}?category=${category._id}`
+    }
+    return this.http.get<IWineNote[]>(url)
+      .pipe(catchError(this.handleError<IWineNote[]>('getWineNotes')))
+  }
+
+  saveNote(note: IWineNote): Observable<IWineNote> {
+    const _id = note._id ? note._id : 'new'
+    const url = this.baseURL + `/api/wine_notes/${_id}`
+    if(note._id){
+      return this.http.put<IWineNote>(url, note)
+    } else {
+      return this.http.post<IWineNote>(url, note)
+    }
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      if (error.status !== 401) {
+        console.log(error);
+      }
+      return of(result as T);
+    };
+  }
+
 }
 
 

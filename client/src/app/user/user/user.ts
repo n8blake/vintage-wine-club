@@ -1,5 +1,5 @@
 import { Image } from "src/app/interfaces/image.interface";
-import { IWine } from "src/app/wine/wine.interface";
+import { IWine } from "src/app/wine/interfaces/wine.interface";
 
 export interface IUser {
   _id?: string;

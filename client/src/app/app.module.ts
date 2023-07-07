@@ -10,8 +10,6 @@ import { FooterComponent } from './common/footer/footer.component';
 import { NavComponent } from './common/nav/nav.component';
 import { JoinComponent } from './pages/join/join.component';
 import { AboutComponent } from './pages/about/about.component';
-import { WineListComponent } from './wine/wine-list/wine-list.component';
-import { WineDetailComponent } from './wine/wine-detail/wine-detail.component';
 import { AuthService } from './user/auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,8 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavComponent,
     JoinComponent,
     AboutComponent,
-    WineListComponent,
-    WineDetailComponent,
+
   ],
   imports: [
     BrowserModule,

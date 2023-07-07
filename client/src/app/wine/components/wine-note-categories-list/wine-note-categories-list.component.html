@@ -1,0 +1,7 @@
+<div class="container">
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let category of noteCategories">
+            <a class="h3 text-decoration-none" [routerLink]="['/wine','notes',category.category]">{{category.category}}</a>
+        </li>
+    </ul>
+</div>

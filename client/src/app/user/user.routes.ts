@@ -8,7 +8,9 @@ import { NewUserComponent } from './pages/new-user/new-user.component';
 
 export const userRoutes: Routes = [
   { path: 'profile/:id', component: ProfileComponent,
-canActivate: [UserRouteActivatorService], resolve: {user: UserProfileResolverService} },
+    canActivate: [UserRouteActivatorService], 
+    resolve: {user: UserProfileResolverService}
+  },
   { path: 'login', component: LoginComponent },
   { path: 'manager', component: UsersManagerComponent },
   { path: 'new', component: NewUserComponent },
