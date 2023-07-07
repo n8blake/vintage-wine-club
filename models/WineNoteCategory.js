@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const WineNoteCategorySchema = new Schema({
     category: { type: String, required: true, unique: true, trim: true },
     color: { type: String },
+    icon: { type: String },
     description: {
         type: String
     }
