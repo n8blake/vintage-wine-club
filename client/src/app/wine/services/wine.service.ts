@@ -66,6 +66,11 @@ export class WineService {
       .pipe(catchError(this.handleError<IWineNote[]>('getWineNotes')))
   }
 
+  getNoteById(id: string): Observable<IWineNote> {
+    const url = this.baseURL + `/api/wine_notes/${id}`;
+    return this.http.get<IWineNote>(url).pipe(catchError(this.handleError<IWineNote>('getWineNoteById')))
+  }
+
   saveNote(note: IWineNote): Observable<IWineNote> {
     const _id = note._id ? note._id : 'new'
     const url = this.baseURL + `/api/wine_notes/${_id}`
