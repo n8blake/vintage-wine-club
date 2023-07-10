@@ -1,15 +1,17 @@
 <div class="container">
     <div *ngIf="!isEditing">
-        <div class="d-flex justify-content-between">
-            <h1>{{noteCategory?.category}}</h1>
-            <div *ngIf="isSommelier()">
-                <button class="btn btn-outline-primary" (click)="isEditing = true">Edit</button>
-            </div>
+        <div class="text-center">
+            <h1 [ngStyle]="{'color': noteCategory?.color}">{{noteCategory?.category}}</h1>
         </div>
         <hr>
-        <div class="row">
-            <div class="col col-lg-8 col-sm-12">
-                <p class="m-4">{{noteCategory?.description}}</p>
+        <div class="row d-flex flex-md-row flex-column-reverse">
+            <div class="col-xs-12 col-lg-8 col-sm-12 col-xs-12">
+                <p class="mx-4">{{noteCategory?.description}}</p>
+            </div>
+            <div class="col-lg-4 col-sm-12 col-xs-12">
+                <div class="d-flex justify-content-end"  *ngIf="isSommelier()">
+                    <button class="btn btn-outline-primary m-2" (click)="isEditing = true">Edit</button>
+                </div>
             </div>
         </div>
     </div>
@@ -35,15 +37,15 @@
     </div>
     <hr>
     <div class="row">
-        <div class="col col-sm-12 col-md-6 col-lg-4">
-            <span class="badge rounded-pill bg-secondary m-2" *ngFor="let note of notes">
+        <div class="col-sx-12 col-sm-12 col-md-6 col-lg-4">
+            <a class="badge rounded-pill bg-secondary m-2 text-decoration-none" [routerLink]="['/wine','note', note._id]" *ngFor="let note of notes">
                 {{note.label}}
-            </span>
+            </a>
         </div>
-        <div *ngIf="isSommelier() && !isAddingNote" class="col col-sm-12 col-md-6 col-lg-4">
+        <div *ngIf="isSommelier() && !isAddingNote" class="col-sx-12 col-sm-12 col-md-6 col-lg-4">
             <button class="btn btn-secondary btn-circle m-1" (click)="isAddingNote = true"><i class="bi bi-plus-lg"></i></button>
         </div>
-        <div class="col col-sm-12 col-md-6 col-lg-4" *ngIf="isAddingNote">
+        <div class="col col-sm-12 col-md-6 col-lg-4 m-2" *ngIf="isAddingNote">
             <form #newNoteForm="ngForm" (ngSubmit)="addNote(newNoteForm)">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="note" aria-label="new-note" name="label" [(ngModel)]="newNote.label"/> 
