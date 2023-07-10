@@ -9,6 +9,7 @@ import { wineRoutes } from './wine.routes';
 import { WineListComponent } from './components/wine-list/wine-list.component';
 import { WineNoteCategoriesListComponent } from './components/wine-note-categories-list/wine-note-categories-list.component';
 import { WineNoteCategoriesDetailComponent } from './components/wine-note-categories-detail/wine-note-categories-detail.component';
+import { NoteDetailComponent } from './components/note-detail/note-detail.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { WineNoteCategoriesDetailComponent } from './components/wine-note-catego
     WineLandingPageComponent,
     WineNoteCategoriesListComponent,
     WineNoteCategoriesDetailComponent,
+    NoteDetailComponent,
   ],
   imports: [
     CommonModule,

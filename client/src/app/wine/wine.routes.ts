@@ -7,6 +7,9 @@ import { WineNoteCategoriesListComponent } from './components/wine-note-categori
 import { WineNoteCategoriesDetailComponent } from './components/wine-note-categories-detail/wine-note-categories-detail.component';
 import { NoteCategoryRouteActivatorService } from './services/note-category-route-activator.service';
 import { NoteCategoryResolverServiceService } from './services/note-category-resolver-service.service';
+import { NoteDetailComponent } from './components/note-detail/note-detail.component';
+import { NoteDetailPageActivatorService } from './services/note-detail-page-activator.service';
+import { NoteDetailResolverService } from './services/note-detail-resolver.service';
 
 export const wineRoutes: Routes = [
     { path: '', component: WineLandingPageComponent},
@@ -17,6 +20,11 @@ export const wineRoutes: Routes = [
       component: WineNoteCategoriesDetailComponent,
       canActivate: [NoteCategoryRouteActivatorService],
       resolve: {category:NoteCategoryResolverServiceService}
+    },
+    { 
+      path: 'note/:note', component: NoteDetailComponent, 
+      canActivate: [NoteDetailPageActivatorService],
+      resolve: {note: NoteDetailResolverService}
     },
     {
         path: ':id',
