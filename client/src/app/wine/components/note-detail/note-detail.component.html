@@ -1,0 +1,55 @@
+<div class="container">
+    <div *ngIf="!isEditing">
+        <div class="text-center">
+            <h1 [ngStyle]="{'color': wineNote?.color}">{{wineNote?.label}}</h1>
+        </div>
+        <hr>
+        <div class="row d-flex flex-md-row flex-column-reverse">
+            <div class="col-xs-12 col-lg-8 col-sm-12 col-xs-12">
+                <p class="mx-4">{{wineNote?.description}}</p>
+            </div>
+            <div class="col-lg-4 col-sm-12 col-xs-12">
+                <div class="d-flex justify-content-end"  *ngIf="isSommelier()">
+                    <button class="btn btn-outline-primary m-2" (click)="isEditing = true">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isEditing && wineNote">
+        <form #categoryForm="ngForm" (ngSubmit)="update(categoryForm)" autocomplete="off">
+            <div class="form-group">
+                <label for="label" class="mb-1"></label>
+                <input class="form-control h1" [(ngModel)]="wineNoteEditable.label" type="text" name="label" id="label" placeholder="Label or Name" required="true" />
+            </div>
+            <div class="form-group">
+                <label for="category" class="mb-1"></label>
+                <select class="form-control" [(ngModel)]="wineNoteEditable.category"  name="category" id="category" placeholder="Category" required="true" [compareWith]="compareCategories">
+                    <option *ngFor="let category of noteCategories" [ngValue]="category">{{category.category}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="color" class="mb-1">Color: </label>
+                <input class="form-control form-control-color" [(ngModel)]="wineNoteEditable.color" type="color" name="color" id="color" placeholder="color" >
+            </div>
+            <div>
+                <label for="description"></label>
+                <textarea rows="10" class="form-control" [(ngModel)]="wineNoteEditable.description" name="description" id="description" placeholder="Description"></textarea>
+            </div>
+            <div class="d-grid m-2">
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                <button type="button" class="btn btn-outline-secondary mb-2" (click)="cancel()">Cancel</button>
+                <div class="text-center mt-2">
+                    <button type="button" class="btn text-secondary" *ngIf="!showingMore" (click)="showMore()">
+                        <i class="fw-lighter"  >more</i>
+                    </button>
+                    <button type="button" class="btn text-secondary" *ngIf="showingMore" (click)="showLess()">
+                        <i class="fw-lighter" >show less</i>
+                    </button>
+                </div>
+                    <button type="button" class="btn btn-outline-danger mt-4" (click)="deleteNote()" *ngIf="showingMore">Delete</button>
+
+            </div>
+        </form>
+    </div>
+    <hr>
+</div>
