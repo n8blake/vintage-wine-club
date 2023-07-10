@@ -15,6 +15,19 @@ module.exports = {
             })
             .catch((error) => res.status(422).json(error))
     },
+    findById: function(req, res){
+      WineNote.findById(req.params.id)
+        .populate(
+          {
+            path: 'category',
+            select: '-__v'
+          }
+        )
+        .then(note => {
+          res.json(note)
+        })
+        .catch(error => res.status(404).json(error))
+    },
     create: function(req, res, next) {
         WineNote.create(req.body)
             .then(newItem => {

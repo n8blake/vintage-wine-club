@@ -15,6 +15,7 @@ router.route("/categories/:id")
     .delete(wineNotesCategoryController.remove)
 
 router.route("/:id")
+    .get(wineNotesController.findById)
     .post(wineNotesController.create)
     .put(wineNotesController.update)
     .delete(wineNotesController.remove)
