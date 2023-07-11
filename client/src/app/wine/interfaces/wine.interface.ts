@@ -3,6 +3,7 @@ export interface IWine {
     name?: string;
     description?: string;
     year?: number;
+    vintage?: number | string;
     type?: string;
     color?: string;
     location?: IWineLocation;
