@@ -1,0 +1,10 @@
+<div class="container">
+    <h1 class="h4">{{wine?._id ? 'Edit' : 'Add New'}} Wine</h1>
+    <hr>
+    <form [formGroup]="wineForm">
+        <div class="form-group">
+            <label for="name">Wine Name:</label>
+            <input formControlName="name" id="wineName" class="form-control" placeholder="Wine of the Terroire...">
+        </div>
+    </form>
+</div>
