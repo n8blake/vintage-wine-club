@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WineService } from '../../services/wine.service';
+import { IWine } from '../../interfaces/wine.interface';
 
 @Component({
   selector: 'app-wine-list',
@@ -8,12 +9,15 @@ import { WineService } from '../../services/wine.service';
 })
 export class WineListComponent implements OnInit {
 
-  wineList: any = []
+  wineList: IWine[] = []
 
   constructor(private wineService:WineService) { }
 
   ngOnInit(): void {
-    this.wineList = this.wineService.getWines()
+    this.wineService.getWines().subscribe(wines => {
+      console.log(wines);
+      this.wineList = wines;
+    })
   }
 
 }
