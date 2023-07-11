@@ -4,6 +4,7 @@ import { IWineNoteCategory } from '../interfaces/wine-note-category';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { IWineNote } from '../interfaces/wine-note';
+import { IWine } from '../interfaces/wine.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +18,16 @@ export class WineService {
     }
   }
 
-  getWines(): any {
-    return WINES;
+  getWines(): Observable<IWine[]> {
+    let url = this.baseURL + '/api/wines/'
+    console.log(`Getting ${url}`);
+    return this.http.get<IWine[]>(url).pipe(catchError(this.handleError<IWine[]>('getWines')))
   }
 
-  getWine(id: number): any {
-    let wine = WINES.find(wine => wine.id === id)
-    return wine
+  getWineById(id: string): Observable<IWine> {
+    console.log(`Getting wine ${id}`)
+    let url = this.baseURL + `/api/wines/${id}`
+    return this.http.get<IWine>(url).pipe(catchError(this.handleError<IWine>('getWineById')))
   }
 
   getNoteCategories(): Observable<IWineNoteCategory[]> {
