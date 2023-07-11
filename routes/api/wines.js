@@ -6,6 +6,7 @@ router.get("/", function(req, res){
 })
 
 router.route("/:id")
+    .get(winesController.findById)
     .post(winesController.create)
     .put(winesController.update)
     .delete(winesController.remove)

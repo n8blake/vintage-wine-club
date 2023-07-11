@@ -15,6 +15,19 @@ module.exports = {
             })
             .catch((error) => res.status(422).json(error))
     },
+    findById: function(req, res){
+      Wine.findById(req.params.id, "-__v")
+        .populate(
+          {
+            path: 'composition',
+            select: '-__v'
+          }
+        )
+        .then(wine => {
+          res.json(wine)
+        })
+        .catch(error => res.status(404).json(error))
+    },
     create: function(req, res, next) {
         Wine.create(req.body)
             .then(newItem => {
