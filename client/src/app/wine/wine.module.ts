@@ -10,6 +10,7 @@ import { WineListComponent } from './components/wine-list/wine-list.component';
 import { WineNoteCategoriesListComponent } from './components/wine-note-categories-list/wine-note-categories-list.component';
 import { WineNoteCategoriesDetailComponent } from './components/wine-note-categories-detail/wine-note-categories-detail.component';
 import { NoteDetailComponent } from './components/note-detail/note-detail.component';
+import { WineAddEditComponent } from './components/wine-add-edit/wine-add-edit.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NoteDetailComponent } from './components/note-detail/note-detail.compon
     WineNoteCategoriesListComponent,
     WineNoteCategoriesDetailComponent,
     NoteDetailComponent,
+    WineAddEditComponent,
   ],
   imports: [
     CommonModule,
