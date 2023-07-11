@@ -11,7 +11,7 @@ export class WineRouteActivatorService implements CanActivate {
   constructor(private wineSerive: WineService, private router:Router) { }
 
   canActivate(route: ActivatedRouteSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    const wineExists = !!this.wineSerive.getWine(+route.params['id'])
+    const wineExists = !!this.wineSerive.getWineById(route.params['wineId'])
     if(!wineExists) this.router.navigate(['/404'])
     return wineExists
   }
