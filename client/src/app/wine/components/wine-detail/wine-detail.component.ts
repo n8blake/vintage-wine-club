@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WineService } from '../../services/wine.service';
+import { IWine } from '../../interfaces/wine.interface';
 
 @Component({
   selector: 'app-wine-detail',
@@ -9,12 +10,16 @@ import { WineService } from '../../services/wine.service';
 })
 export class WineDetailComponent implements OnInit {
 
-  wine: any = {}
+  wine?:IWine
 
   constructor(private wineService: WineService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.wine = this.wineService.getWine(+this.route.snapshot.params['id'])
+    this.wineService.getWineById(this.route.snapshot.params['wineId']).subscribe(wine => {
+      this.wine = wine
+      console.log(this.wine);
+    })
+
   }
 
   getSomImageUrl(name: string): string {
