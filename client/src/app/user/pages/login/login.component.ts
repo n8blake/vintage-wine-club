@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   mouseoverLogin = false;
   loginInvalid = false;
 
-  constructor(private router: Router, private authService: AuthService, private appRef: ApplicationRef) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {}
 
@@ -36,10 +36,7 @@ export class LoginComponent implements OnInit {
               console.log(response);
               console.log(identity);
             }
-            //
           });
-          //this.appRef.tick();
-          
         }
       });
   }
