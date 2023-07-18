@@ -16,9 +16,9 @@ export class WineAddEditComponent implements OnInit {
   public wineForm!: FormGroup
 
   constructor(private authService: AuthService, private router: Router, private wineService: WineService, private route: ActivatedRoute) {
-    if(!this.authService.isAuthenticated()){
-      this.router.navigate(['/login'])
-    }
+    // if(!this.authService.isAuthenticated()){
+    //   this.router.navigate(['/login'])
+    // }
   }
 
   ngOnInit(): void {
