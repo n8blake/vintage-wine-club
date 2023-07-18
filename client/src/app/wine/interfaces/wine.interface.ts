@@ -1,15 +1,16 @@
 export interface IWine {
-    _id?: string;
-    name?: string;
-    description?: string;
-    year?: number;
-    vintage?: number | string;
-    type?: string;
-    color?: string;
-    location?: IWineLocation;
-    composition?: Array<IWineComponent>;
-    tastingNotes?: Array<string>;
-    imageUrl?: string;
+  _id?: string;
+  name?: string;
+  description?: string;
+  imageUrl?: string;
+  avb?: number;
+  color?: string;
+  sparkling?: string;
+  year?: number;
+  vintage?: number | string;
+  type?: string;
+  origin?: IWineLocation;
+  composition?: Array<IWineComponent>;
 }
 
 export interface IWineComponent {
