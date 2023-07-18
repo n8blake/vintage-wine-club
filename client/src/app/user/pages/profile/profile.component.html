@@ -10,7 +10,7 @@
                     <p>{{user?.shortBio}}</p>
                 </div>
                 <div class="col col-md-6">
-                    <img class="som-img" [src]="user?.image" />
+                    <img alt="" class="som-img" [src]="user?.image" />
                 </div>
             </div>
             <hr>
@@ -26,7 +26,7 @@
             <div class="mx-2">
                 Roles: 
                 <span *ngFor="let role of user.roles">
-                    <span class="badge rounded-pill bg-primary mx-2" *ngIf="role">{{roleUuidToName(role)}}</span>
+                    <span class="badge rounded-pill bg-primary mx-2" *ngIf="role">{{role.role || roleUuidToName(role)}}</span>
                 </span>
             </div>
             <div>
@@ -61,7 +61,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="m-2 d-flex justify-content-center" *ngIf="user.image">
-                    <img [src]="user.image" width="300" />
+                    <img alt="" [src]="user.image" width="300" />
                 </div>
                 <div class="form-group m-2">
                     <label for="profilePhoto" class="mb-1">Profile Photo:</label>
