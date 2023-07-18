@@ -10,7 +10,10 @@ export class AuthService implements OnInit {
   currentUser?: IUser;
   activeUserToken?: string;
   baseURL: string = '';
-  private userChange: Subject<IUser> = new Subject<IUser>();
+  private user: Subject<IUser> = new Subject<IUser>();
+  private logoutUser: Subject<Boolean> = new Subject<Boolean>();
+  user$ = this.user.asObservable();
+  logoutUser$ = this.logoutUser.asObservable();
 
   constructor(private http: HttpClient) {
     if (!environment.production) {
@@ -26,6 +29,11 @@ export class AuthService implements OnInit {
     } else {
       console.log('not yet logged in');
     }
+  }
+
+  changeUser(user: IUser): void {
+    this.logoutUser.next(false);
+    this.user.next(user);
   }
 
   loginUser(email: string, password: string) {
@@ -47,7 +55,7 @@ export class AuthService implements OnInit {
             localStorage.setItem('token', data.token);
           }
           this.currentUser = <IUser>data;
-          this.userChange.next(this.currentUser);
+          this.changeUser(this.currentUser);
         })
       )
       .pipe(
@@ -63,6 +71,7 @@ export class AuthService implements OnInit {
     const options = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
+    this.logoutUser.next(true);
     return this.http.get(this.baseURL + '/api/auth/logout');
   }
 
@@ -77,12 +86,13 @@ export class AuthService implements OnInit {
   getCurrentIdentity(): Observable<IUser> {
     return this.http.get(this.baseURL + '/api/users/currentIdentity').pipe(
       tap((data: any) => {
-        //console.log(data.status);
+        console.log(data);
         if (data) {
           if (data.token) {
             localStorage.setItem('token', data.token);
           }
           this.currentUser = <IUser>data;
+          this.changeUser(this.currentUser);
         }
       }),
       catchError(this.handleError<IUser>('getCurrentIdentity'))
@@ -98,12 +108,13 @@ export class AuthService implements OnInit {
     };
     return this.http.get(this.baseURL + '/api/auth/login', options).pipe(
       tap((data: any) => {
-        //console.log(data.status);
+        console.log(data.status);
         if (data) {
           if (data.token) {
             localStorage.setItem('token', data.token);
           }
           this.currentUser = <IUser>data;
+          this.changeUser(this.currentUser);
         }
       }),
       catchError(this.handleError<IUser>('checkAuth'))

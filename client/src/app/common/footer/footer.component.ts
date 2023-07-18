@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/user/auth/auth.service';
 import { IUser } from 'src/app/user/user/user';
 
@@ -15,8 +15,13 @@ export class FooterComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.authService.getCurrentIdentity().subscribe((data) => {
-      this.user = <IUser>data;
+    this.authService.user$.subscribe(user => { 
+      this.user = user;
+    })
+    this.authService.logoutUser$.subscribe(logout => {
+      if(logout){
+        this.user = undefined;
+      }
     })
   }
 
