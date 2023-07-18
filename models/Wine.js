@@ -11,6 +11,7 @@ const WineSchema = new Schema({
     color: {type: String},
     sparkling: {type: Boolean},
     origin: { type: Schema.Types.ObjectId, ref: 'Location' },
+    type: { type: String },
     composition: [
         {
             grape: {type: String, required: true },
