@@ -3,8 +3,27 @@
     <hr>
     <form [formGroup]="wineForm">
         <div class="form-group">
-            <label for="name">Wine Name:</label>
-            <input formControlName="name" id="wineName" class="form-control" placeholder="Wine of the Terroire...">
+            <label for="name">Name:</label>
+            <input formControlName="name" type="text" name="name" id="wineName" class="form-control" placeholder="Wine of the Terroire..." />
+        </div>
+        <div class="form-group">
+            <div>Type:</div>
+            <div class="form-check form-check-inline">
+                <input formControlName="type" name="wineType" type="radio" id="red" class="form-check-input " value="red" >
+                <label class="form-check-label" for="red">Red</label>
+            </div>
+             <div class="form-check form-check-inline">
+                <input formControlName="type" name="wineType" type="radio" id="rose" class="form-check-input" value="rosé" >
+                <label class="form-check-label" for="rose">Rosé</label>
+            </div>
+             <div class="form-check form-check-inline">
+                <input formControlName="type" name="wineType" type="radio" id="white" class="form-check-input" value="white" >
+                <label class="form-check-label" for="white">White</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea formControlName="description" id="wineDescription" class="form-control" placeholder="Objective description" rows="5"></textarea>
         </div>
     </form>
 </div>
