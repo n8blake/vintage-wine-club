@@ -13,6 +13,9 @@ import { AboutComponent } from './pages/about/about.component';
 import { AuthService } from './user/auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AM_TOKEN } from './services/map.service';
+
+declare let mapkit: any;
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    {provide: AM_TOKEN, useValue: mapkit}
   ],
   bootstrap: [AppComponent]
 })
