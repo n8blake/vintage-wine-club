@@ -8,11 +8,13 @@ const protectedUserRoutes = require("./protectedUserRoutes");
 const rolesRoutes = require("./roles");
 const winesRoutes = require("./wines");
 const notesRoutes = require("./wineNotes");
+const grapesRoutes = require("./grapes");
 // use routes
 router.use('/auth', authRoutes);
 router.use("/users", usersRoutes);
 router.use("/wines", winesRoutes);
 router.use("/wine_notes", notesRoutes);
+router.use("/grapes", grapesRoutes);
 // to protect routes, add withAdminRole 
 // e.g. router.use("/getUsers", withAdminRole, protectedUsersRoutes);
 router.use("/getUsers", protectedUserRoutes);
