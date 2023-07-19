@@ -1,29 +1,52 @@
 <div class="container">
-    <h1 class="h4">{{wine?._id ? 'Edit' : 'Add New'}} Wine</h1>
+    <h1 class="h4 text-center">{{wine?._id ? 'Edit' : 'Add New'}} Wine</h1>
     <hr>
     <form [formGroup]="wineForm">
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input formControlName="name" type="text" name="name" id="wineName" class="form-control" placeholder="Wine of the Terroire..." />
+        <div class="input-group mb-3">
+            <span class="input-group-text" for="name">Name</span>
+            <input formControlName="name" type="text" name="name" id="wineName" class="form-control" placeholder="Wine Name" autocomplete="off"/>
         </div>
-        <div class="form-group">
-            <div>Type:</div>
-            <div class="form-check form-check-inline">
-                <input formControlName="type" name="wineType" type="radio" id="red" class="form-check-input " value="red" >
-                <label class="form-check-label" for="red">Red</label>
-            </div>
-             <div class="form-check form-check-inline">
-                <input formControlName="type" name="wineType" type="radio" id="rose" class="form-check-input" value="rosé" >
-                <label class="form-check-label" for="rose">Rosé</label>
-            </div>
-             <div class="form-check form-check-inline">
-                <input formControlName="type" name="wineType" type="radio" id="white" class="form-check-input" value="white" >
-                <label class="form-check-label" for="white">White</label>
-            </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" for="name">Year</span>
+            <input formControlName="year" type="text" name="year" id="wineYear" class="form-control" placeholder="2012" autocomplete="off"/>
         </div>
-        <div class="form-group">
+        <div class="d-flex input-group mb-3">
+            <span class="input-group-text">Type:</span>
+            
+            <input formControlName="type" name="wineType" type="radio" id="red" class="btn-check " value="red" >
+            <label class="btn btn-outline-primary" for="red">Red</label>
+
+            <input formControlName="type" name="wineType" type="radio" id="rose" class="btn-check" value="rosé" >
+            <label class="btn btn-outline-secondary" for="rose">Rosé</label>
+
+            <input formControlName="type" name="wineType" type="radio" id="white" class="btn-check" value="white" >
+            <label class="btn btn-outline-chardonnay" for="white">White</label>
+        
+        </div>
+        <div class="form-check form-check-inline mb-3">
+            <input formControlName="sparkling" name="sparkling" type="checkbox" id="sparkling" class="form-check-input" value="" aria-label="sparkling">
+            <label class="form-check-label" for="sparkling">Sparkling</label>
+        </div>
+        <div class="form-group mb-3">
+            <label for="location">Location:</label>
+            <input formControlName="location" type="text" name="location" id="location" class="form-control" placeholder="Terroire..." />
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Color</span>
+            <input formControlName="color" type="color" name="color" id="color" class="form-control form-control-color" aria-label="Wine Color" placeholder="#720618" value="#720618" />
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">ABV</span>
+            <input formControlName="abv" type="text" name="abv" id="abv" class="form-control text-align-right" aria-label="Alcohol by volume" placeholder="ABV" />
+            <span class="input-group-text">%</span>
+        </div>
+        <div class="form-group mb-3">
             <label for="description">Description:</label>
             <textarea formControlName="description" id="wineDescription" class="form-control" placeholder="Objective description" rows="5"></textarea>
+        </div>
+        <div class="d-grid mb-3">
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+            <button type="button" class="btn btn-outline-chardonnay mb-3">Cancel</button>
         </div>
     </form>
 </div>
