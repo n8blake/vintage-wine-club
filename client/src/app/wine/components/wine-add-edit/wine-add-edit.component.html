@@ -2,34 +2,35 @@
     <h1 class="h4 text-center">{{wine?._id ? 'Edit' : 'Add New'}} Wine</h1>
     <hr>
     <form [formGroup]="wineForm">
-        <div class="input-group mb-3">
-            <span class="input-group-text" for="name">Name</span>
-            <input formControlName="name" type="text" name="name" id="wineName" class="form-control" placeholder="Wine Name" autocomplete="off"/>
-        </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" for="name">Year</span>
-            <input formControlName="year" type="text" name="year" id="wineYear" class="form-control" placeholder="2012" autocomplete="off"/>
-        </div>
-        <div class="d-flex input-group mb-3">
-            <span class="input-group-text">Type:</span>
+        <div class="form-floating mb-3">
             
-            <input formControlName="type" name="wineType" type="radio" id="red" class="btn-check " value="red" >
+            <input formControlName="name" type="text" name="name" id="wineName" class="form-control" placeholder="Wine Name" autocomplete="off"/>
+            <label  for="name">Name</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input formControlName="year" type="number" name="year" id="wineYear" class="form-control" placeholder="2012" autocomplete="off"/>
+            <label for="year">Year</label>
+        </div>
+        
+        <div class="d-flex gap-2 justify-content-md-start mb-3">
+            <small class="d-block m-2">Type</small>
+            <input formControlName="type" name="type" type="radio" id="red" class="btn-check" value="red" >
             <label class="btn btn-outline-primary" for="red">Red</label>
 
-            <input formControlName="type" name="wineType" type="radio" id="rose" class="btn-check" value="rosé" >
+            <input formControlName="type" name="type" type="radio" id="rose" class="btn-check " value="rosé" >
             <label class="btn btn-outline-secondary" for="rose">Rosé</label>
-
-            <input formControlName="type" name="wineType" type="radio" id="white" class="btn-check" value="white" >
+            <input formControlName="type" name="type" type="radio" id="white" class="btn-check" value="white" >
             <label class="btn btn-outline-chardonnay" for="white">White</label>
-        
         </div>
+        
         <div class="form-check form-check-inline mb-3">
             <input formControlName="sparkling" name="sparkling" type="checkbox" id="sparkling" class="form-check-input" value="" aria-label="sparkling">
             <label class="form-check-label" for="sparkling">Sparkling</label>
         </div>
-        <div class="form-group mb-3">
-            <label for="location">Location:</label>
-            <input formControlName="location" type="text" name="location" id="location" class="form-control" placeholder="Terroire..." />
+        <div class="form-floating mb-3">
+            
+            <input formControlName="location" type="text" name="location" id="location" class="form-control" placeholder="Terroire..." (ngModelChange)="startSearch()"/>
+            <label for="location">{{locationLabel}}</label>
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text">Color</span>
@@ -40,6 +41,7 @@
             <input formControlName="abv" type="text" name="abv" id="abv" class="form-control text-align-right" aria-label="Alcohol by volume" placeholder="ABV" />
             <span class="input-group-text">%</span>
         </div>
+        <app-composition-selection class="d-block mb-3"></app-composition-selection>
         <div class="form-group mb-3">
             <label for="description">Description:</label>
             <textarea formControlName="description" id="wineDescription" class="form-control" placeholder="Objective description" rows="5"></textarea>
