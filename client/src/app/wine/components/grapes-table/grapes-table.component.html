@@ -1,0 +1,26 @@
+<table class="table table-sm">
+    <thead>
+        <th>
+            Name
+        </th>
+        <th>
+            Synonyms
+        </th>
+        <th>Origin</th>
+        <th>Pedigree</th>
+        <th>Introduced</th>
+        <th>Type</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let grape of grapes">
+            <td>{{grape.name}}</td>
+            <td>
+                <span *ngFor="let synonym of grape.synonyms"><i>{{synonym}}</i><br></span>
+            </td>
+            <td>{{grape.origin}}</td>
+            <td>{{grape.pedigree}}</td>
+            <td>{{grape.year}}</td>
+            <td>{{grape.type}}</td>
+        </tr>
+    </tbody>
+</table>
