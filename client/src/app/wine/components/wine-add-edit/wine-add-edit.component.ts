@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IWine } from '../../interfaces/wine.interface';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/user/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WineService } from '../../services/wine.service';
@@ -14,6 +14,7 @@ export class WineAddEditComponent implements OnInit {
 
   wine?: IWine
   public wineForm!: FormGroup
+  locationLabel: string = 'Location';
 
   constructor(private authService: AuthService, private router: Router, private wineService: WineService, private route: ActivatedRoute) {
     // if(!this.authService.isAuthenticated()){
@@ -28,13 +29,30 @@ export class WineAddEditComponent implements OnInit {
         this.wine = wine  
       })
     } 
-    this.wineForm = new FormGroup({})
+    this.wineForm = new FormGroup({
+      name: new FormControl(''),
+      year: new FormControl(''),
+      type: new FormControl(''),
+      sparkling: new FormControl(''),
+      location: new FormControl(''),
+      color: new FormControl('#720618'),
+      abv: new FormControl(''),
+      description: new FormControl(''),
+    });
   }
 
   saveWine(form: FormGroup): void {
     if(form.valid){
       
     }
+  }
+
+  startSearch(): void {
+    this.locationLabel = 'Searching...'
+    if(this.wineForm.value.location){
+      console.log(this.wineForm.value.location``);
+    }
+    
   }
 
 }
