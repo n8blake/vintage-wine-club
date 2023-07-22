@@ -1,3 +1,5 @@
+import { IGrapeVarietal } from "./grape-varietal";
+
 export interface IWine {
   _id?: string;
   name?: string;
@@ -14,8 +16,10 @@ export interface IWine {
 }
 
 export interface IWineComponent {
+    _id?: string;
     percentage?: number;
     grape?: string;
+    varietal?: IGrapeVarietal;
 }
 
 export interface IWineLocation {
