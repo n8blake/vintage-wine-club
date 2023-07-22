@@ -14,6 +14,7 @@ import { AuthService } from './user/auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AM_TOKEN } from './services/map.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 declare let mapkit: any;
 
@@ -34,7 +35,8 @@ declare let mapkit: any;
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     AuthService,
