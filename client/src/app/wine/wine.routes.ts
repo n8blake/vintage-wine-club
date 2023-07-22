@@ -1,5 +1,5 @@
 import { Route, Routes } from '@angular/router';
-import { WineLandingPageComponent } from '../pages/wine-landing-page/wine-landing-page.component';
+import { WineLandingPageComponent } from './pages/wine-landing-page/wine-landing-page.component';
 import { WineListComponent } from './components/wine-list/wine-list.component';
 import { WineDetailComponent } from './components/wine-detail/wine-detail.component';
 import { WineRouteActivatorService } from './services/wine-route-activator.service';
@@ -11,27 +11,37 @@ import { NoteDetailComponent } from './components/note-detail/note-detail.compon
 import { NoteDetailPageActivatorService } from './services/note-detail-page-activator.service';
 import { NoteDetailResolverService } from './services/note-detail-resolver.service';
 import { WineAddEditComponent } from './components/wine-add-edit/wine-add-edit.component';
+import { GrapesComponent } from './pages/grapes/grapes.component';
 
 export const wineRoutes: Routes = [
-    { path: '', component: WineLandingPageComponent},
-    { path: 'list', component: WineListComponent },
-    { path: 'new', component: WineAddEditComponent },
-    { path: 'edit/:wineId', component: WineAddEditComponent, canActivate: [WineRouteActivatorService]},
-    { path: 'notes', component: WineNoteCategoriesListComponent },
-    {
-      path: 'notes/:category',
-      component: WineNoteCategoriesDetailComponent,
-      canActivate: [NoteCategoryRouteActivatorService],
-      resolve: {category:NoteCategoryResolverServiceService}
-    },
-    { 
-      path: 'note/:note', component: NoteDetailComponent, 
-      canActivate: [NoteDetailPageActivatorService],
-      resolve: {note: NoteDetailResolverService}
-    },
-    {
-        path: ':wineId',
-        component: WineDetailComponent,
-        canActivate: [WineRouteActivatorService],
-    },
-]
+  { path: '', component: WineLandingPageComponent },
+  { path: 'list', component: WineListComponent },
+  { path: 'new', component: WineAddEditComponent },
+  {
+    path: 'edit/:wineId',
+    component: WineAddEditComponent,
+    canActivate: [WineRouteActivatorService],
+  },
+  { path: 'notes', component: WineNoteCategoriesListComponent },
+  {
+    path: 'notes/:category',
+    component: WineNoteCategoriesDetailComponent,
+    canActivate: [NoteCategoryRouteActivatorService],
+    resolve: { category: NoteCategoryResolverServiceService },
+  },
+  {
+    path: 'grapes',
+    component: GrapesComponent,
+  },
+  {
+    path: 'note/:note',
+    component: NoteDetailComponent,
+    canActivate: [NoteDetailPageActivatorService],
+    resolve: { note: NoteDetailResolverService },
+  },
+  {
+    path: ':wineId',
+    component: WineDetailComponent,
+    canActivate: [WineRouteActivatorService],
+  },
+];
