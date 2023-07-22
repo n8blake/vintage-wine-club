@@ -1,0 +1,22 @@
+<div class="row">
+    <small class="mb-2">Wine Compositon</small>
+    <div class="input-group mb-3" *ngFor="let comp of composition">
+        <span class="input-group-text">
+            Grape Varietal
+        </span>
+        <input aria-label="Grape Varietal" type="text" class="form-control" name="grape" [(ngModel)]="comp.grape" />
+        <span class="input-group-text">
+            Amount
+        </span>
+        <input aria-label="percentage" name="percentage" type="number" class="form-control text-align-right" [(ngModel)]="comp.percentage" />
+        <span class="input-group-text">%</span>
+        
+        <button role="button" type="button" aria-label="remove" class="btn btn-sm btn-outline-danger">
+            <i class="bi bi-trash"></i>
+        </button>
+       
+    </div>
+    <div>
+        <button class="btn btn-primary" (click)="addNewWineComponent()">Add Grape Varietal</button>
+    </div>
+</div>
