@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { GrapesComponent } from './grapes.component';
+
+describe('GrapesComponent', () => {
+  let component: GrapesComponent;
+  let fixture: ComponentFixture<GrapesComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ GrapesComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(GrapesComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
